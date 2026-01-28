@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, PartyPopper, Frown, Check } from 'lucide-react'
+import { Heart, PartyPopper, Frown } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import clsx from 'clsx'
 
@@ -8,30 +8,6 @@ function App() {
   const [isForgiven, setIsForgiven] = useState(false)
   const [noBtnPosition, setNoBtnPosition] = useState({ x: 0, y: 0 })
   const [hoverCount, setHoverCount] = useState(0)
-  const [promises, setPromises] = useState([
-    { id: 1, text: "带你去吃好吃的 🍲", checked: false },
-    { id: 2, text: "清空购物车 🛒", checked: false },
-    { id: 3, text: "承包一周家务 🧹", checked: false },
-    { id: 4, text: "每天夸你三次 ❤️", checked: false },
-  ])
-
-  const togglePromise = (id: number) => {
-    setPromises(prev => prev.map(p => {
-        if (p.id === id) {
-            if (!p.checked) {
-                // Trigger mini confetti
-                confetti({
-                    particleCount: 30,
-                    spread: 40,
-                    origin: { y: 0.7 },
-                    colors: ['#ec4899', '#db2777']
-                })
-            }
-            return { ...p, checked: !p.checked }
-        }
-        return p
-    }))
-  }
 
   const handleForgive = () => {
     setIsForgiven(true)
@@ -147,34 +123,11 @@ function App() {
               ? "谢谢亲爱的原谅我！我会加倍对你好，不让你受委屈。开心开心开心！"
               : "晓燕宝宝，又惹你生气不开心了，真的对不起。我知道是我不好，没有顾及你的感受。你说的我都铭记于心，我一定好好爱你，好好经营我们的家，请你大人不记小人过，原谅我好不好？"}
           </p>
-
-          {/* Promises Section */}
-          {!isForgiven && (
-            <div className="w-full text-left space-y-2 bg-pink-50/50 p-4 rounded-xl border border-pink-100">
-              <p className="text-sm font-bold text-pink-600 mb-2">为了表示诚意，我承诺：</p>
-              <div className="grid grid-cols-1 gap-2">
-                {promises.map(p => (
-                    <motion.div 
-                        key={p.id}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={() => togglePromise(p.id)}
-                        className={clsx(
-                            "flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all border",
-                            p.checked ? "bg-pink-100 border-pink-300" : "bg-white hover:bg-gray-50 border-transparent"
-                        )}
-                    >
-                        <div className={clsx(
-                            "w-5 h-5 rounded border flex items-center justify-center transition-colors flex-shrink-0",
-                            p.checked ? "bg-pink-500 border-pink-500" : "border-gray-300 bg-white"
-                        )}>
-                            {p.checked && <Check className="w-3 h-3 text-white" />}
-                        </div>
-                        <span className={clsx("text-gray-700 text-sm md:text-base", p.checked && "line-through text-pink-700 opacity-60")}>{p.text}</span>
-                    </motion.div>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* {!isForgiven && (
+            <p className="text-pink-400 text-sm italic">
+              (点击左边按钮原谅我，右边按钮...你点不到的)
+            </p>
+          )} */}
         </motion.div>
 
         {/* Buttons Area */}

@@ -56,9 +56,23 @@ function App() {
   }
 
   const getNoBtnText = () => {
-    const texts = ["不原谅", "再想想？", "真的不吗？", "给个机会", "别这样嘛", "求求你了", "好狠心...", "哭哭"]
+    const texts = [
+      "不原谅", 
+      "真的不原谅吗？", 
+      "再考虑一下呗", 
+      "求求你了", 
+      "我会听话的", 
+      "给个机会嘛", 
+      "不要这样子", 
+      "我买好吃的给你", 
+      "行行行，都听你的", 
+      "点原谅嘛！"
+    ]
     return texts[Math.min(hoverCount, texts.length - 1)]
   }
+
+  // Calculate Yes button scale based on hoverCount
+  const yesButtonScale = 1 + (hoverCount * 0.1);
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-pink-100 to-pink-300 flex items-center justify-center p-4 overflow-hidden font-sans">

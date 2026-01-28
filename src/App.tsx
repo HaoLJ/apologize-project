@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, PartyPopper, Frown } from 'lucide-react'
+import { Heart, PartyPopper, Frown, Check } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import clsx from 'clsx'
 

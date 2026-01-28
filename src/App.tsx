@@ -96,7 +96,7 @@ function App() {
           animate={{ opacity: 1, y: 0 }}
           className="text-3xl md:text-4xl font-bold text-gray-800 tracking-wide"
         >
-          {isForgiven ? "太好啦！爱你！" : "老婆，我错啦..."}
+          {isForgiven ? "爱你！" : "老婆，我错啦..."}
         </motion.h1>
 
         {/* Content */}
@@ -106,8 +106,8 @@ function App() {
         >
           <p className="text-gray-600 leading-relaxed text-lg md:text-xl font-medium">
             {isForgiven
-              ? "谢谢亲爱的原谅我！我会加倍对你好，不让你受委屈。开心开心开心，啾咪啾咪！"
-              : "老婆，又惹你生气不开心了，真的对不起。我知道是我不好，没有顾及你的感受。你说的我都铭记于心，我一定好好爱你，好好经营我们的家，请你大人不记小人过，原谅我好不好？"}
+              ? "谢谢亲爱的原谅我！我会加倍对你好，不让你受委屈。开心开心开心！"
+              : "晓燕宝宝，又惹你生气不开心了，真的对不起。我知道是我不好，没有顾及你的感受。你说的我都铭记于心，我一定好好爱你，好好经营我们的家，请你大人不记小人过，原谅我好不好？"}
           </p>
           {/* {!isForgiven && (
             <p className="text-pink-400 text-sm italic">
@@ -121,13 +121,15 @@ function App() {
             {!isForgiven ? (
               <>
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05 * yesButtonScale }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleForgive}
-                  className="px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-pink-500/30 transition-all flex items-center gap-2"
+                  style={{ transformOrigin: 'center' }}
+                  animate={{ scale: yesButtonScale }}
+                  className="px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-pink-500/30 transition-all flex items-center gap-2 z-20"
                 >
                   <Heart className="w-5 h-5 fill-current" />
-                  原谅我
+                  {hoverCount > 5 ? "好啦，原谅我吧！" : "原谅我"}
                 </motion.button>
 
                 <motion.button
@@ -135,7 +137,7 @@ function App() {
                   onMouseEnter={moveNoButton}
                   onClick={moveNoButton} // For mobile tap
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="px-8 py-3 bg-gray-200 hover:bg-gray-300 text-gray-500 rounded-full font-bold text-lg shadow-md transition-colors whitespace-nowrap"
+                  className="px-8 py-3 bg-gray-200 hover:bg-gray-300 text-gray-500 rounded-full font-bold text-lg shadow-md transition-colors whitespace-nowrap absolute sm:static"
                 >
                   {getNoBtnText()}
                 </motion.button>
@@ -148,7 +150,7 @@ function App() {
                 className="flex items-center gap-2 text-pink-600 font-bold text-xl"
               >
                 <PartyPopper className="w-8 h-8" />
-                <span>回家给你跪搓衣板（假的）</span>
+                <span>给你跪搓衣板</span>
               </motion.div>
             )}
         </div>

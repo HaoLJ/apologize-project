@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, PartyPopper, Frown } from 'lucide-react'
+import { Heart, PartyPopper, Frown, Check } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import clsx from 'clsx'
 
@@ -8,6 +8,30 @@ function App() {
   const [isForgiven, setIsForgiven] = useState(false)
   const [noBtnPosition, setNoBtnPosition] = useState({ x: 0, y: 0 })
   const [hoverCount, setHoverCount] = useState(0)
+  const [promises, setPromises] = useState([
+    { id: 1, text: "带你去吃好吃的 🍲", checked: false },
+    { id: 2, text: "清空购物车 🛒", checked: false },
+    { id: 3, text: "承包一周家务 🧹", checked: false },
+    { id: 4, text: "每天夸你三次 ❤️", checked: false },
+  ])
+
+  const togglePromise = (id: number) => {
+    setPromises(prev => prev.map(p => {
+        if (p.id === id) {
+            if (!p.checked) {
+                // Trigger mini confetti
+                confetti({
+                    particleCount: 30,
+                    spread: 40,
+                    origin: { y: 0.7 },
+                    colors: ['#ec4899', '#db2777']
+                })
+            }
+            return { ...p, checked: !p.checked }
+        }
+        return p
+    }))
+  }
 
   const handleForgive = () => {
     setIsForgiven(true)
